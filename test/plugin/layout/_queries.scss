@@ -76,7 +76,7 @@
 // Below
 // -----
 @include describe('Below [mixin]') {
-  @include it('Applies max-width query, with ~1px subtracted') {
+  @include it('Applies max-width query, with ~1px subtracted (overlap: "max")') {
     @include assert {
       @include output {
         @include below(30em) {
@@ -91,13 +91,45 @@
       }
     }
   }
+  @include it('Applies max-width query, with nothing subtracted (overlap: "min")') {
+    $breakpoint-avoid-overlap: 'min' !global;
+    @include assert {
+      @include output {
+        @include below(30em) {
+          test: content;
+        }
+      }
+
+      @include expect {
+        @media (max-width: 30em) {
+          test: content;
+        }
+      }
+    }
+  }
 }
 
 
 // Above
 // -----
 @include describe('Above [mixin]') {
-  @include it('Applies min-width query') {
+  @include it('Applies min-width query, with ~1px subtracted (overlap: "min")') {
+    @include assert {
+      @include output {
+        @include above(30em) {
+          test: content;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 30.01em) {
+          test: content;
+        }
+      }
+    }
+  }
+  @include it('Applies min-width query, with nothing subtracted (overlap: "max")') {
+    $breakpoint-avoid-overlap: 'max' !global;
     @include assert {
       @include output {
         @include above(30em) {
@@ -118,7 +150,7 @@
 // Between
 // -------
 @include describe('Between [mixin]') {
-  @include it('Applies min and max-width queries') {
+  @include it('Applies min and max-width queries (overlap: "max")') {
     @include assert {
       @include output {
         @include between(30em, 40em) {
@@ -132,6 +164,23 @@
         }
       }
     }
+  }
+  @include it('Applies min and max-width queries (overlap: "min")') {
+    $breakpoint-avoid-overlap: 'min' !global;
+    @include assert {
+      @include output {
+        @include between(30em, 40em) {
+          test: content;
+        }
+      }
+
+      @include expect {
+        @media (min-width: 30.01em) and (max-width: 40em) {
+          test: content;
+        }
+      }
+    }
+    $breakpoint-avoid-overlap: 'max' !global;
   }
 }
 
