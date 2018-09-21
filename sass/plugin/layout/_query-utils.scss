@@ -29,3 +29,33 @@
 
   @return $value;
 }
+
+
+// Fix Min [function]
+// ------------------
+/// Add `1px`
+/// (or `0.01` for `em` and `rem` units)
+/// to min breakpoint values,
+/// to avoid media-query overlap.
+///
+/// @access private
+///
+/// @link https://zellwk.com/blog/media-query-units/ PX, EM, or REM Media Queries?
+/// @link http://tzi.fr/css/prevent-double-breakpoint Prevent Double Breakpoints
+///
+/// @param {length} $value -
+///   The min value to adjust
+/// @return {length} -
+///   The adjusted value
+@function _a_fix-min(
+  $value
+) {
+  @if comparable($value, 1px) {
+    $value: $value + 1px;
+  } @else if index('em' 'rem', unit($value)) {
+    $value: $value + 0.01;
+  }
+
+  @return $value;
+}
+

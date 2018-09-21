@@ -42,7 +42,7 @@
       <div class="project-title">
         <a href="index.html" rel="home" class="project-name">Accoutrement</a>
         
-          <span class="project-version">1.0.1</span>
+          <span class="project-version">1.0.4</span>
         
       </div>
     </header>
@@ -591,6 +591,292 @@ for internal references and<span class="widont">&nbsp;</span>adjustments</li>
   
     
     
+  
+
+  
+
+  
+  
+
+
+  
+  
+
+  
+  
+
+</section>
+
+  
+    
+    
+
+
+
+
+
+
+
+
+
+
+<section class="item" id="variable--breakpoint-avoid-overlap">
+  
+    
+  
+  
+
+  
+  
+  
+  
+
+  <div data-item-section="header">
+    <h2 class="item-title">
+      
+        <span class="item-type"></span>
+      
+
+      
+        <a href="#variable--breakpoint-avoid-overlap" class="item-name">$breakpoint-avoid-overlap</a>
+      
+
+      
+        <span class="value-type">(&#39;max&#39; |<span class="widont">&nbsp;</span>&#39;min&#39;)</span>
+      
+
+      
+    </h2>
+
+    
+  
+
+
+    
+    
+    
+  
+    <div class="code-block">
+      
+        <div class="code-header">
+          <span class="code-language">
+            scss
+          </span>
+
+          
+        </div>
+      
+
+      
+      
+      <pre class="hljs-pre"><code class="lang-scss">$breakpoint-avoid-overlap: &#39;max&#39; !default;</code></pre>
+    </div>
+  
+
+    
+  
+  
+  
+  
+
+  
+    <div class="text-block">
+      <p>Determine if breakpoints are min- or<span class="widont">&nbsp;</span>max-inclusive</p>
+<p>When generating media queries, we need to
+avoid media-query<span class="widont">&nbsp;</span>overlap.</p>
+<p>To help with overlapping min/max queries,
+we remove <code>1px</code> (or <code>0.01em</code>) from every max value
+OR add <code>1px</code> (or <code>0.01em</code>) to every min<span class="widont">&nbsp;</span>value.</p>
+<p>This variable determines which direction to go.
+It’s assumed the behavior should be global in your<span class="widont">&nbsp;</span>project.</p>
+
+      
+  
+
+      
+  
+
+      
+  
+
+    </div>
+  
+
+  </div>
+
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+
+  
+  
+
+
+  
+
+    
+  <div data-item-section="related">
+    
+      <h3 class="item-subtitle">
+        <span class="item-subtitle-main">Related</span>
+        
+      </h3>
+    
+
+    
+      
+        
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      
+      
+        <a href="http://tzi.fr/css/prevent-double-breakpoint" class="item-name">Prevent Double Breakpoints</a>
+      
+      
+      
+      <span class="item-note">[external]</span>
+    </h4>
+
+    
+  </div>
+
+
+      
+
+      
+    
+  </div>
+
+  
+  
+  
+  
+    
+    
+  
+    
+  <div data-item-section="used-by">
+    
+      <h3 class="item-subtitle">
+        <span class="item-subtitle-main">Used By</span>
+        
+      </h3>
+    
+
+    
+      
+      
+        
+
+        
+          
+          
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      <span class="item-type">@mixin</span>
+      
+        <a href="
+  layout-queries.html#mixin--below" class="item-name">below()</a>
+      
+      
+      
+      
+    </h4>
+
+    
+  </div>
+
+
+        
+      
+        
+
+        
+          
+          
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      <span class="item-type">@mixin</span>
+      
+        <a href="
+  layout-queries.html#mixin--above" class="item-name">above()</a>
+      
+      
+      
+      
+    </h4>
+
+    
+  </div>
+
+
+        
+      
+        
+
+        
+          
+          
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      <span class="item-type">@mixin</span>
+      
+        <a href="
+  layout-queries.html#mixin--between" class="item-name">between()</a>
+      
+      
+      
+      
+    </h4>
+
+    
+  </div>
+
+
+        
+      
+        
+
+        
+      
+    
+  </div>
+
   
 
   
@@ -1210,7 +1496,7 @@ making both <code>$breakpoints</code> and <code>$sizes</code> keys available</p>
       <p>Generate a max–&lt;<code>width</code>/<code>height</code>&gt; query,
 for styling elements below the given viewport width.
 To help with overlapping min/max queries,
-we remove <code>1px</code> (or <code>0.01em</code>) from every max value
+we [optionally] remove <code>1px</code> (or <code>0.01em</code>) from every max value
 to avoid media-query<span class="widont">&nbsp;</span>overlap.</p>
 
       
@@ -1436,7 +1722,8 @@ for a result of e.g. <code>(max-width: 30em)</code>.</p>
 
       
       
-      <pre class="hljs-pre"><code class="lang-scss">$breakpoints: (&#39;red&#39;: 30em);
+      <pre class="hljs-pre"><code class="lang-scss">$breakpoint-avoid-overlap: &#39;min&#39;;
+$breakpoints: (&#39;red&#39;: 30em);
 
 @include below(&#39;red&#39;) {
   html { background: red; }
@@ -1462,7 +1749,7 @@ for a result of e.g. <code>(max-width: 30em)</code>.</p>
 
       
       
-      <pre class="hljs-pre"><code class="lang-css">@media (max-width: 29.99em) {
+      <pre class="hljs-pre"><code class="lang-css">@media (max-width: 30em) {
   html {
     background: red;
   }
@@ -1534,6 +1821,31 @@ for a result of e.g. <code>(max-width: 30em)</code>.</p>
 
 
       
+
+      
+        
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      
+      
+        <a href="
+  layout-queries.html#variable--breakpoint-avoid-overlap" class="item-name">$breakpoint-avoid-overlap</a>
+      
+      
+      
+      
+    </h4>
+
+    
+  </div>
+
 
       
     
@@ -1625,6 +1937,41 @@ for a result of e.g. <code>(max-width: 30em)</code>.</p>
 
         
       
+        
+        
+        
+
+        
+          
+          
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      
+      
+        <a href="
+  layout-queries.html#variable--breakpoint-avoid-overlap" class="item-name">$breakpoint-avoid-overlap</a>
+      
+      
+      <span class="value-type">(&#39;max&#39; |<span class="widont">&nbsp;</span>&#39;min&#39;)</span>
+      
+    </h4>
+
+    
+  </div>
+
+
+        
+      
     
   </div>
 
@@ -1699,7 +2046,10 @@ for a result of e.g. <code>(max-width: 30em)</code>.</p>
   
     <div class="text-block">
       <p>Generate a min-&lt;<code>width</code>/<code>height</code>&gt; query,
-for styling elements above the given viewport<span class="widont">&nbsp;</span>width.</p>
+for styling elements above the given viewport width.
+To help with overlapping min/max queries,
+we [optionally] add <code>1px</code> (or <code>0.01em</code>) to every min value
+to avoid media-query<span class="widont">&nbsp;</span>overlap.</p>
 
       
   
@@ -1924,7 +2274,8 @@ for a result of e.g. <code>(min-width: 30em)</code>.</p>
 
       
       
-      <pre class="hljs-pre"><code class="lang-scss">$breakpoints: (&#39;green&#39;: 50em);
+      <pre class="hljs-pre"><code class="lang-scss">$breakpoint-avoid-overlap: &#39;min&#39;;
+$breakpoints: (&#39;green&#39;: 50em);
 
 @include above(&#39;green&#39;) {
   html { background: green; }
@@ -1950,7 +2301,7 @@ for a result of e.g. <code>(min-width: 30em)</code>.</p>
 
       
       
-      <pre class="hljs-pre"><code class="lang-css">@media (min-width: 50em) {
+      <pre class="hljs-pre"><code class="lang-css">@media (min-width: 50.01em) {
   html {
     background: green;
   }
@@ -1968,6 +2319,89 @@ for a result of e.g. <code>(min-width: 30em)</code>.</p>
     </div>
   
 
+
+  
+
+    
+  <div data-item-section="related">
+    
+      <h3 class="item-subtitle">
+        <span class="item-subtitle-main">Related</span>
+        
+      </h3>
+    
+
+    
+      
+        
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      
+      
+        <a href="https://zellwk.com/blog/media-query-units/" class="item-name">PX, EM, or REM Media Queries?</a>
+      
+      
+      
+      <span class="item-note">[external]</span>
+    </h4>
+
+    
+  </div>
+
+
+      
+        
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      
+      
+        <a href="http://tzi.fr/css/prevent-double-breakpoint" class="item-name">Prevent Double Breakpoints</a>
+      
+      
+      
+      <span class="item-note">[external]</span>
+    </h4>
+
+    
+  </div>
+
+
+      
+
+      
+        
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      
+      
+        <a href="
+  layout-queries.html#variable--breakpoint-avoid-overlap" class="item-name">$breakpoint-avoid-overlap</a>
+      
+      
+      
+      
+    </h4>
+
+    
+  </div>
+
+
+      
+    
+  </div>
 
   
   
@@ -2012,6 +2446,75 @@ for a result of e.g. <code>(min-width: 30em)</code>.</p>
       
       
       
+      
+    </h4>
+
+    
+  </div>
+
+
+        
+      
+        
+        
+        
+
+        
+          
+          
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      <span class="item-type">@function</span>
+      
+        <span class="item-name">_a_fix-min()</span>
+      
+      
+      
+      <span class="item-note">[private]</span>
+    </h4>
+
+    
+  </div>
+
+
+        
+      
+        
+        
+        
+
+        
+          
+          
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      
+      
+        <a href="
+  layout-queries.html#variable--breakpoint-avoid-overlap" class="item-name">$breakpoint-avoid-overlap</a>
+      
+      
+      <span class="value-type">(&#39;max&#39; |<span class="widont">&nbsp;</span>&#39;min&#39;)</span>
       
     </h4>
 
@@ -2097,8 +2600,8 @@ for a result of e.g. <code>(min-width: 30em)</code>.</p>
       <p>Generate a min-and-max-&lt;<code>width</code>/<code>height</code>&gt; query,
 for styling elements between given viewport widths.
 To help with overlapping min/max queries,
-we remove <code>1px</code> (or <code>0.01em</code>) from every max value
-to avoid media-query<span class="widont">&nbsp;</span>overlap.</p>
+we remove (or add) <code>1px</code> (or <code>0.01em</code>) from (or to) every max
+(or min) value to avoid media-query<span class="widont">&nbsp;</span>overlap.</p>
 
       
   
@@ -2351,7 +2854,8 @@ for a result of e.g. <code>(min-width: 30em)</code>.</p>
 
       
       
-      <pre class="hljs-pre"><code class="lang-scss">$breakpoints: (
+      <pre class="hljs-pre"><code class="lang-scss">$breakpoint-avoid-overlap: &#39;min&#39;;
+$breakpoints: (
   &#39;red&#39;: 30em,
   &#39;green&#39;: 50em,
 );
@@ -2380,7 +2884,7 @@ for a result of e.g. <code>(min-width: 30em)</code>.</p>
 
       
       
-      <pre class="hljs-pre"><code class="lang-css">@media (min-width: 30em) and (max-width: 49.99em) {
+      <pre class="hljs-pre"><code class="lang-css">@media (min-width: 30.01em) and (max-width: 50em) {
   html {
     background: yellow;
   }
@@ -2452,6 +2956,31 @@ for a result of e.g. <code>(min-width: 30em)</code>.</p>
 
 
       
+
+      
+        
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      
+      
+        <a href="
+  layout-queries.html#variable--breakpoint-avoid-overlap" class="item-name">$breakpoint-avoid-overlap</a>
+      
+      
+      
+      
+    </h4>
+
+    
+  </div>
+
 
       
     
@@ -2536,6 +3065,40 @@ for a result of e.g. <code>(min-width: 30em)</code>.</p>
     <h4 class="param-title">
       <span class="item-type">@function</span>
       
+        <span class="item-name">_a_fix-min()</span>
+      
+      
+      
+      <span class="item-note">[private]</span>
+    </h4>
+
+    
+  </div>
+
+
+        
+      
+        
+        
+        
+
+        
+          
+          
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      <span class="item-type">@function</span>
+      
         <span class="item-name">_a_fix-max()</span>
       
       
@@ -2546,6 +3109,47 @@ for a result of e.g. <code>(min-width: 30em)</code>.</p>
     
   </div>
 
+
+        
+      
+        
+        
+        
+
+        
+          
+          
+  
+  
+  
+  
+  
+  
+  
+  
+
+  
+  <div class="param-list">
+    <h4 class="param-title">
+      
+      
+        <a href="
+  layout-queries.html#variable--breakpoint-avoid-overlap" class="item-name">$breakpoint-avoid-overlap</a>
+      
+      
+      <span class="value-type">(&#39;max&#39; |<span class="widont">&nbsp;</span>&#39;min&#39;)</span>
+      
+    </h4>
+
+    
+  </div>
+
+
+        
+      
+        
+        
+        
 
         
       

@@ -28,4 +28,30 @@
   }
 }
 
+
+// Fix Min
+// -------
+@include describe('Fix Min [function]') {
+  @include it('Adds 1px to px values') {
+    @include assert-equal(
+      _a_fix-min(20px),
+      21px
+    );
+  }
+
+  @include it('Adds 0.01em to em values') {
+    @include assert-equal(
+      _a_fix-min(20em),
+      20.01em
+    );
+  }
+
+  @include it('Returns non-em/px values unchanged') {
+    @include assert-equal(
+      _a_fix-min(20ch),
+      20ch
+    );
+  }
+}
+
 } // end module
