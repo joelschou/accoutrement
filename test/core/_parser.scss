@@ -48,7 +48,7 @@
 @include describe('Deep Token Get [function]') {
   $map: (
     'this': 0,
-    'this->that': 1,
+    'this#{$_a_sep}that': 1,
     'foo': (
       'baz': 2,
       'three': (
@@ -59,26 +59,26 @@
     'ofo': (
       'zab': 4
     ),
-    'fop': '#foo->baz',
-    'fta': '#foo->three->abc',
-    'ftb': '#foo->three->def',
+    'fop': '#foo#{$_a_sep}baz',
+    'fta': '#foo#{$_a_sep}three#{$_a_sep}abc',
+    'ftb': '#foo#{$_a_sep}three#{$_a_sep}def',
 
-    // These two tests illustrate the tolerance for `->` in keys/values
-    // 'bar': '#this->that', // 1 [-> used in valid key]
-    // 'bip': 'this->that', // this->that [not a hashtag]
+    // These two tests illustrate the tolerance for `#{$_a_sep}` in keys/values
+    // 'bar': '#this#{$_a_sep}that', // 1 [#{$_a_sep} used in valid key]
+    // 'bip': 'this#{$_a_sep}that', // this#{$_a_sep}that [not a hashtag]
 
-    'dop': '#ofo->nope',
-    'dip': '#this->baz',
+    'dop': '#ofo#{$_a_sep}nope',
+    'dip': '#this#{$_a_sep}baz',
   );
 
-  @include it('Can start with a simple parent->child lookup') {
+  @include it('Can start with a simple parent#{$_a_sep}child lookup') {
     @include assert-equal(
-      get-token($map, 'foo->baz'),
+      get-token($map, 'foo#{$_a_sep}baz'),
       2
     );
   }
 
-  @include it('Handles parent->child hashes in values') {
+  @include it('Handles parent#{$_a_sep}child hashes in values') {
     @include assert-equal(
       get-token($map, 'fop'),
       2
@@ -92,17 +92,17 @@
     );
   }
 
-  // @include it('Tolerates `->` in keys and values') {
+  // @include it('Tolerates `#{$_a_sep}` in keys and values') {
   //   @include assert-equal(
   //     [get-token($map, 'bar'), get-token($map, 'bip')],
-  //     [1,'this->that']
+  //     [1,'this#{$_a_sep}that']
   //   );
   // }
 
   @include it('Fails elegantly when keys are not found') {
     @include assert-equal(
       [get-token($map, 'dop'), get-token($map, 'dip')],
-      ['("zab": 4)->nope', '#this->baz']
+      ['("zab": 4)#{$_a_sep}nope', '#this#{$_a_sep}baz']
     );
   }
 }
