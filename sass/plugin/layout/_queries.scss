@@ -34,6 +34,24 @@
 $breakpoints: () !default;
 
 
+/// Determine if breakpoints are min- or max-inclusive
+///
+/// When generating media queries, we need to
+/// avoid media-query overlap.
+///
+/// To help with overlapping min/max queries,
+/// we remove `1px` (or `0.01em`) from every max value
+/// OR add `1px` (or `0.01em`) to every min value.
+///
+/// This variable determines which direction to go.
+/// It's assumed the behavior should be global in your project.
+///
+/// @group layout-queries
+/// @link http://tzi.fr/css/prevent-double-breakpoint Prevent Double Breakpoints
+/// @type 'max' | 'min'
+$breakpoint-avoid-overlap: 'max' !default;
+
+
 // Break [function]
 // ----------------
 /// Return a breakpoint from the `$breakpoint` map,
@@ -139,6 +157,9 @@ $breakpoints: () !default;
 // -------------
 /// Generate a min-<`width`/`height`> query,
 /// for styling elements above the given viewport width.
+/// To help with overlapping min/max queries,
+/// we [optionally] add `1px` (or `0.01em`) to every min value
+/// to avoid media-query overlap.
 ///
 /// To help with overlapping min/max queries,
 /// we remove `1px` (or `0.01em`) from max values by default.
@@ -162,6 +183,9 @@ $breakpoints: () !default;
 ///   @include above('green') {
 ///     html { background: green; }
 ///   }
+///
+/// @link https://zellwk.com/blog/media-query-units/ PX, EM, or REM Media Queries?
+/// @link http://tzi.fr/css/prevent-double-breakpoint Prevent Double Breakpoints
 ///
 /// @param {length | string} $min -
 ///   The name of a documented breakpoint/size,
