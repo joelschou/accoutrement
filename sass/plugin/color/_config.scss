@@ -5,8 +5,8 @@
 // Color Map
 // ---------
 /// A variable storing the map of
-/// all colors globally-avialble on your project.
-/// Any colors added to the `$colors` map will be accesible
+/// all colors globally-available on your project.
+/// Any colors added to the `$colors` map will be accessible
 /// to the `color()` function by default.
 ///
 /// Define each color with a `name`, `base-value`,
@@ -27,7 +27,8 @@
 /// - Adjustments are a nested map of color functions and arguments,
 ///   for adjusting colors directly in your palette.
 ///
-/// The color-names `contrast-light` and `contrast-dark` are special.
+/// The color-names `contrast-light` and `contrast-dark` are special
+/// (with or without a private `_` prefix).
 /// Use those names to define the default light-and-dark options
 /// for our color-contrast tools.
 /// They default to `white` and `black` respectively.
@@ -58,6 +59,27 @@
 $colors: () !default;
 
 
+// Default Colors
+// --------------
+/// These colors are available by default
+/// for color-contrast and tint/shade functions.
+/// Override these defaults in the `$colors` map,
+/// using the same `contrast-*` names.
+///
+/// **Do not edit this variable directly**.
+///
+/// @since 2.0.0 -
+/// - NEW: Default contrast colors are publicly documented,
+///   and available via `color()` functions
+///
+/// @group color-api
+/// @type map
+$_a_COLORS: (
+  '_contrast-light': white,
+  '_contrast-dark': black,
+);
+
+
 // Add Colors
 // ----------
 /// Merge individual color maps into the global `$colors` variable,
@@ -86,7 +108,7 @@ $colors: () !default;
 ///
 ///   @include add-colors($brand-colors, $text-colors);
 ///
-/// @parameter {map...} $maps -
+/// @param {map...} $maps -
 ///   Pass any number of maps to be merged.
 /// @output -
 ///   An updated global `$colors` variable,

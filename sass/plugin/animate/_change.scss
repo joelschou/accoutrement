@@ -1,4 +1,4 @@
-/// # Animations & Transitions
+/// # Combined "Change" Maps: Animations & Transitions
 /// Combine your `$times` and `$easing` values
 /// to create entire transitions and animations --
 /// all stored in one place and easy to access
@@ -88,7 +88,7 @@ $changes: () !default;
 ///
 /// @group animate-change
 ///
-/// @parameter {map...} $maps -
+/// @param {map...} $maps -
 ///   Pass any number of maps to be merged and added
 /// @output -
 ///   An updated global `$changes` variable,
